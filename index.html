@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Expense Tracker</title>
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="interactive.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Daily Expense Tracker</h1>
+    <p>Record, organize, and monitor your daily spending easily.</p>
+  </header>
+
+  <main class="container">
+    <!-- Spending Summary Cards -->
+    <section class="summary-grid">
+      <div class="card">
+        <h3>Total Spent</h3>
+        <p>₹1,700</p>
+      </div>
+      <div class="card">
+        <h3>Total Expenses</h3>
+        <p>5</p>
+      </div>
+      <div class="card">
+        <h3>Highest Expense</h3>
+        <p>₹700</p>
+      </div>
+      <div class="card">
+        <h3>Top Category</h3>
+        <p>Shopping</p>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      <!-- Add Expense Form with Native HTML5 Validation -->
+      <section class="panel">
+        <h2>Add New Expense</h2>
+        <form action="#expense-added" method="get">
+          <div class="form-group">
+            <label for="expense-name">Expense Name *</label>
+            <input type="text" id="expense-name" name="expense-name" placeholder="e.g., Lunch, Bus Ticket" required>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-category">Category *</label>
+            <select id="expense-category" name="expense-category" required>
+              <option value="">-- Select Category --</option>
+              <option value="Food">Food</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Bills">Bills</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-amount">Amount (₹) *</label>
+            <input type="number" id="expense-amount" name="expense-amount" placeholder="e.g., 150" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-date">Date *</label>
+            <input type="date" id="expense-date" name="expense-date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-desc">Description (Optional)</label>
+            <input type="text" id="expense-desc" name="expense-desc" placeholder="Short note">
+          </div>
+
+          <button type="submit" class="btn-primary">Add Expense</button>
+          <p id="expense-added" class="success-banner">Form validated! Expense ready to record.</p>
+        </form>
+      </section>
+
+      <!-- Category-Wise Summary & CSS Bar Chart -->
+      <section class="panel">
+        <h2>Category-wise Summary</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total Spending</th>
+              <th>Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Shopping</td>
+              <td>₹700</td>
+              <td>
+                <div class="bar-bg"><div class="bar-fill shopping-bar"></div></div>
+              </td>
+            </tr>
+            <tr>
+              <td>Food</td>
+              <td>₹500</td>
+              <td>
+                <div class="bar-bg"><div class="bar-fill food-bar"></div></div>
+              </td>
+            </tr>
+            <tr>
+              <td>Transportation</td>
+              <td>₹300</td>
+              <td>
+                <div class="bar-bg"><div class="bar-fill travel-bar"></div></div>
+              </td>
+            </tr>
+            <tr>
+              <td>Education</td>
+              <td>₹200</td>
+              <td>
+                <div class="bar-bg"><div class="bar-fill edu-bar"></div></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- Expense List with Pure-CSS Category Filter -->
+    <section class="panel list-panel">
+      <h2>Expense History (Filter by Category)</h2>
+
+      <div class="filter-wrapper">
+        <input type="radio" name="category-filter" id="filter-all" checked>
+        <label for="filter-all" class="filter-btn">All Expenses</label>
+
+        <input type="radio" name="category-filter" id="filter-food">
+        <label for="filter-food" class="filter-btn">Food</label>
+
+        <input type="radio" name="category-filter" id="filter-travel">
+        <label for="filter-travel" class="filter-btn">Transportation</label>
+
+        <input type="radio" name="category-filter" id="filter-shopping">
+        <label for="filter-shopping" class="filter-btn">Shopping</label>
+
+        <input type="radio" name="category-filter" id="filter-education">
+        <label for="filter-education" class="filter-btn">Education</label>
+
+        <table class="data-table expense-table">
+          <thead>
+            <tr>
+              <th>Expense</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-shopping">
+              <td>College Backpack</td>
+              <td>Shopping</td>
+              <td>₹700</td>
+              <td>2026-11-11</td>
+              <td>Laptop bag</td>
+              <td><a href="#deleted-notice" class="btn-delete">Delete</a></td>
+            </tr>
+            <tr class="row-food">
+              <td>Lunch Combo</td>
+              <td>Food</td>
+              <td>₹400</td>
+              <td>2026-11-11</td>
+              <td>Cafeteria meal</td>
+              <td><a href="#deleted-notice" class="btn-delete">Delete</a></td>
+            </tr>
+            <tr class="row-travel">
+              <td>Metro Pass</td>
+              <td>Transportation</td>
+              <td>₹300</td>
+              <td>2026-11-10</td>
+              <td>Weekly commute</td>
+              <td><a href="#deleted-notice" class="btn-delete">Delete</a></td>
+            </tr>
+            <tr class="row-education">
+              <td>Lab Notebook</td>
+              <td>Education</td>
+              <td>₹200</td>
+              <td>2026-11-09</td>
+              <td>CS practicals</td>
+              <td><a href="#deleted-notice" class="btn-delete">Delete</a></td>
+            </tr>
+            <tr class="row-food">
+              <td>Evening Snacks</td>
+              <td>Food</td>
+              <td>₹100</td>
+              <td>2026-11-09</td>
+              <td>Tea and samosa</td>
+              <td><a href="#deleted-notice" class="btn-delete">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="deleted-notice" class="info-banner">Delete action triggered (static HTML/CSS demo mode).</p>
+    </section>
+  </main>
+</body>
+</html>
